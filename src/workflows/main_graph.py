@@ -1,99 +1,210 @@
-# src/workflows/main_graph.py
-from typing import Literal
+import json
 import os
+import base64
+import re
+import logging
+from typing import TypedDict, List, Dict, Optional
 from langgraph.graph import StateGraph, START, END
-from langgraph.prebuilt import ToolNode
-from langchain_core.messages import HumanMessage
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage
 
-from src.state.graph_state import AgentState
-from src.core.base_agent import BaseAgent
-# 假设组员们在 src/tools 和 src/agents 下实现了具体的工具和智能体
-# from src.tools.web_search import WebSearchTool 
-# from src.tools.ocsr_parser import OCSRTool
+load_dotenv(os.path.join(os.path.dirname(__file__), '../../.env'))
 
-# 1. 准备工具箱
-# 这里体现了极高的通用性，任何人写的工具只要继承了 BaseTool 都可以放到这个列表里
-global_tools = []
-
-# 2. 定义工具执行节点
-# LangGraph 原生支持 ToolNode，它会自动读取状态中最新的 tool_calls 并执行相应工具
-tool_node = ToolNode(global_tools)
-
-# 3. 定义路由逻辑 (Router)
-def router(state: AgentState) -> Literal["tools", "__end__", "continue"]:
-    """
-    这是一个条件路由函数，决定下一步去哪。
-    """
-    messages = state.get("messages", [])
-    if not messages:
-        return "__end__"
-        
-    last_message = messages[-1]
-    
-    # 如果最新的消息包含了工具调用请求，则将图路由到工具节点
-    if last_message.tool_calls:
-        return "tools"
-        
-    # 如果没有工具调用，判断任务是否完成（这里可以根据具体的标志位或大模型的输出来判断）
-    # 简单起见，如果大模型输出了特定的结束语（如 "FINAL ANSWER"），就结束
-    if "FINAL ANSWER" in last_message.content:
-        return "__end__"
-        
-    # 否则继续循环（或交还给 Supervisor）
-    return "continue"
-
-# 4. 实例化智能体 (节点)
-# 这里以一个总控大模型（Supervisor/Researcher）为例。
-# 在实际的小组开发中，你们可以实例化多个 BaseAgent，比如 planner, coder, reviewer 等。
-
-# 确保 API 密钥存在
-api_key = os.getenv("QWEN_API_KEY")
-if not api_key:
-    raise ValueError("QWEN_API_KEY 环境变量未设置")
-
+# 使用 Qwen 模型
 llm = ChatOpenAI(
-    model=os.getenv("QWEN_MODEL", "qwen3.5-plus"),
-    api_key=api_key,
-    base_url=os.getenv("QWEN_API_BASE", "https://dashscope.aliyuncs.com/compatible-mode/v1")
+    model=os.getenv("QWEN_MODEL"),
+    api_key=os.getenv("QWEN_API_KEY"),
+    base_url=os.getenv("QWEN_API_BASE"),
+    temperature=0
 )
 
-primary_agent = BaseAgent(
-    name="Researcher",
-    llm=llm,
-    tools=global_tools,
-    system_prompt="你是一个核心研究助手。你可以使用工具来获取信息。完成任务后，请在回复末尾加上 'FINAL ANSWER'。"
-)
+def extract_float_from_content(content: str) -> float:
+    match = re.search(r"[-+]?\d*\.\d+|\d+", content)
+    if match:
+        try:
+            return float(match.group())
+        except:
+            return 0.0
+    return 0.0
 
-# 包装一下 Agent 的调用，适配 LangGraph 的节点格式
-def call_primary_agent(state: AgentState):
-    return primary_agent(state)
+try:
+    import tenseal as ts
+except ImportError:
+    print("Warning: tenseal is not installed. Please run 'pip install tenseal'")
+    ts = None
 
-# 5. 构建状态图
+# 本地密钥文件约定
+SECRET_KEY_PATH = os.path.join(os.path.dirname(__file__), 'secret_context.bytes')
+PUBLIC_KEY_PATH = os.path.join(os.path.dirname(__file__), 'public_context.bytes')
+
+# ============== 1. State 定义 ==============
+class AgentState(TypedDict, total=False):
+    student_id: str
+    raw_data: dict
+    academic_data: dict
+    financial_data: dict
+    psychological_data: dict
+    enc_academic_b64: str
+    enc_financial_b64: str
+    enc_psych_b64: str
+    enc_total_b64: str
+    final_alert: bool
+
+# ============== 2. Node 函数编写 ==============
+def key_management_node(state: AgentState):
+    raw_data = state.get("raw_data", {})
+    
+    updates = {
+        "raw_data": {},
+        "academic_data": raw_data.get("academic_data", {}),
+        "financial_data": raw_data.get("financial_data", {}),
+        "psychological_data": raw_data.get("psychological_data", {})
+    }
+
+    if ts is None:
+        raise ImportError("tenseal is missing")
+        
+    if os.path.exists(SECRET_KEY_PATH) and os.path.exists(PUBLIC_KEY_PATH):
+        return updates
+
+    context = ts.context(
+        ts.SCHEME_TYPE.CKKS,
+        poly_modulus_degree=8192,
+        coeff_mod_bit_sizes=[60, 40, 40, 60]
+    )
+    context.global_scale = 2**40
+    context.generate_galois_keys()
+
+    with open(SECRET_KEY_PATH, 'wb') as f:
+        f.write(context.serialize(save_secret_key=True))
+
+    context.make_context_public()
+    
+    with open(PUBLIC_KEY_PATH, 'wb') as f:
+        f.write(context.serialize())
+
+    return updates
+
+def _get_public_context():
+    with open(PUBLIC_KEY_PATH, 'rb') as f:
+        context_bytes = f.read()
+    return ts.context_from(context_bytes)
+
+def academic_agent(state: AgentState):
+    context = _get_public_context()
+    academic_data = state.get("academic_data", {})
+    
+    prompt = f"""你是一个学业危机评估智能体。
+请根据以下学生的学业数据综合打分，生成一个 0 到 100 之间的浮点数作为“学业风险分”。
+分数越高代表学业危机越大（例如 GPA 极低、挂科数多则风险分高）。
+不要输出任何其他文本和解释，只需要返回纯数字。
+
+学业数据：
+{json.dumps(academic_data, ensure_ascii=False)}
+    """
+    response = llm.invoke([HumanMessage(content=prompt)])
+    academic_score = extract_float_from_content(response.content)
+    
+    academic_score = max(0.0, min(100.0, academic_score))
+    
+    enc_vec = ts.ckks_vector(context, [academic_score])
+    enc_b64 = base64.b64encode(enc_vec.serialize()).decode('utf-8')
+    
+    return {"enc_academic_b64": enc_b64, "academic_data": {}}
+
+def financial_agent(state: AgentState):
+    context = _get_public_context()
+    financial_data = state.get("financial_data", {})
+    
+    prompt = f"""你是一个财务危机评估智能体。
+请根据以下学生的财务数据综合打分，生成一个 0 到 100 之间的浮点数作为“财务风险分”。
+分数越高代表财务危机越大（例如生活费极低、负债高等）。
+不要输出任何其他文本和解释，只需要返回纯数字。
+
+财务数据：
+{json.dumps(financial_data, ensure_ascii=False)}
+    """
+    response = llm.invoke([HumanMessage(content=prompt)])
+    financial_score = extract_float_from_content(response.content)
+    
+    financial_score = max(0.0, min(100.0, financial_score))
+    
+    enc_vec = ts.ckks_vector(context, [financial_score])
+    enc_b64 = base64.b64encode(enc_vec.serialize()).decode('utf-8')
+    
+    return {"enc_financial_b64": enc_b64, "financial_data": {}}
+
+def psychological_agent(state: AgentState):
+    context = _get_public_context()
+    psychological_data = state.get("psychological_data", {})
+    
+    prompt = f"""你是一个心理危机评估智能体。
+请根据以下学生的心理数据综合打分，生成一个 0 到 100 之间的浮点数作为“心理风险分”。
+分数越高代表心理危机越大（例如压力指数高、睡眠质量差等）。
+不要输出任何其他文本和解释，只需要返回纯数字。
+
+心理数据：
+{json.dumps(psychological_data, ensure_ascii=False)}
+    """
+    response = llm.invoke([HumanMessage(content=prompt)])
+    psych_score = extract_float_from_content(response.content)
+    
+    psych_score = max(0.0, min(100.0, psych_score))
+    
+    enc_vec = ts.ckks_vector(context, [psych_score])
+    enc_b64 = base64.b64encode(enc_vec.serialize()).decode('utf-8')
+    
+    return {"enc_psych_b64": enc_b64, "psychological_data": {}}
+
+def coordinator_agent(state: AgentState):
+    context = _get_public_context()
+    
+    def decode_vec(b64_str: str):
+        if not b64_str:
+            return ts.ckks_vector(context, [0.0])
+        return ts.ckks_vector_from(context, base64.b64decode(b64_str.encode('utf-8')))
+        
+    academic_vec = decode_vec(state.get("enc_academic_b64", ""))
+    financial_vec = decode_vec(state.get("enc_financial_b64", ""))
+    psych_vec = decode_vec(state.get("enc_psych_b64", ""))
+    
+    total_vec = academic_vec * 0.4 + financial_vec * 0.3 + psych_vec * 0.3
+    
+    enc_total_b64 = base64.b64encode(total_vec.serialize()).decode('utf-8')
+    return {"enc_total_b64": enc_total_b64}
+
+def oracle_node(state: AgentState):
+    with open(SECRET_KEY_PATH, 'rb') as f:
+        secret_context_bytes = f.read()
+    secret_context = ts.context_from(secret_context_bytes)
+    
+    enc_total_b64 = state.get("enc_total_b64")
+    total_vec = ts.ckks_vector_from(secret_context, base64.b64decode(enc_total_b64.encode('utf-8')))
+    
+    result_list = total_vec.decrypt()
+    total_score = result_list[0] if result_list else 0.0
+    
+    final_alert = bool(total_score > 75.0)
+    
+    return {"final_alert": final_alert}
+
+# ============== 3. Graph 编译 ==============
 workflow = StateGraph(AgentState)
 
-# 添加节点
-workflow.add_node("Researcher", call_primary_agent)
-workflow.add_node("tools", tool_node)
+workflow.add_node("key_management_node", key_management_node)
+workflow.add_node("academic_agent", academic_agent)
+workflow.add_node("financial_agent", financial_agent)
+workflow.add_node("psychological_agent", psychological_agent)
+workflow.add_node("coordinator_agent", coordinator_agent)
+workflow.add_node("oracle_node", oracle_node)
 
-# 添加边与流转逻辑
-# 起点直接连到 Researcher
-workflow.add_edge(START, "Researcher")
+workflow.add_edge(START, "key_management_node")
+workflow.add_edge("key_management_node", "academic_agent")
+workflow.add_edge("academic_agent", "financial_agent")
+workflow.add_edge("financial_agent", "psychological_agent")
+workflow.add_edge("psychological_agent", "coordinator_agent")
+workflow.add_edge("coordinator_agent", "oracle_node")
+workflow.add_edge("oracle_node", END)
 
-# Researcher 结束后，经过条件路由判断去向
-workflow.add_conditional_edges(
-    "Researcher",
-    router,
-    {
-        "tools": "tools",        # 去执行工具
-        "__end__": END,          # 结束任务
-        "continue": "Researcher" # 没结束的话继续思考（或者交给下一个 Agent）
-    }
-)
-
-# 工具节点执行完毕后，状态会自动更新（包含工具输出），必须强制流转回 Researcher 继续判断
-workflow.add_edge("tools", "Researcher")
-
-# 6. 编译生成最终的可执行图
-# 可以在此处添加 memory（例如 SqliteSaver），以便支持多轮对话的时间旅行和断点调试
 app = workflow.compile()

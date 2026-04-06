@@ -1,0 +1,952 @@
+[
+  {
+    "student_id": "20260000",
+    "raw_data": {
+      "name": "高欣华",
+      "major": "计算机科学与技术",
+      "academic_data": {
+        "gpa": 3.11,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4133,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 11,
+        "sleep_quality_score": 10
+      }
+    }
+  },
+  {
+    "student_id": "20260001",
+    "raw_data": {
+      "name": "杨思勇",
+      "major": "化学",
+      "academic_data": {
+        "gpa": 1.22,
+        "failed_courses": 3
+      },
+      "financial_data": {
+        "monthly_living_expenses": 805,
+        "has_heavy_debt": true
+      },
+      "psychological_data": {
+        "stress_index": 81,
+        "sleep_quality_score": 3
+      }
+    }
+  },
+  {
+    "student_id": "20260002",
+    "raw_data": {
+      "name": "胡晨宇",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 3.26,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4016,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 19,
+        "sleep_quality_score": 10
+      }
+    }
+  },
+  {
+    "student_id": "20260003",
+    "raw_data": {
+      "name": "王德萱",
+      "major": "化学",
+      "academic_data": {
+        "gpa": 3.11,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 3251,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 36,
+        "sleep_quality_score": 10
+      }
+    }
+  },
+  {
+    "student_id": "20260004",
+    "raw_data": {
+      "name": "朱思杰",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 1.94,
+        "failed_courses": 6
+      },
+      "financial_data": {
+        "monthly_living_expenses": 656,
+        "has_heavy_debt": true
+      },
+      "psychological_data": {
+        "stress_index": 82,
+        "sleep_quality_score": 3
+      }
+    }
+  },
+  {
+    "student_id": "20260005",
+    "raw_data": {
+      "name": "高玉霞",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 3.52,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4997,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 19,
+        "sleep_quality_score": 7
+      }
+    }
+  },
+  {
+    "student_id": "20260006",
+    "raw_data": {
+      "name": "马玉强",
+      "major": "数据科学",
+      "academic_data": {
+        "gpa": 3.98,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2576,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 22,
+        "sleep_quality_score": 8
+      }
+    }
+  },
+  {
+    "student_id": "20260007",
+    "raw_data": {
+      "name": "张思敏",
+      "major": "人工智能",
+      "academic_data": {
+        "gpa": 3.73,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2206,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 39,
+        "sleep_quality_score": 10
+      }
+    }
+  },
+  {
+    "student_id": "20260008",
+    "raw_data": {
+      "name": "李建琪",
+      "major": "统计学",
+      "academic_data": {
+        "gpa": 3.24,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4576,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 27,
+        "sleep_quality_score": 8
+      }
+    }
+  },
+  {
+    "student_id": "20260009",
+    "raw_data": {
+      "name": "郭泽鹏",
+      "major": "计算机科学与技术",
+      "academic_data": {
+        "gpa": 3.52,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 3858,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 35,
+        "sleep_quality_score": 8
+      }
+    }
+  },
+  {
+    "student_id": "20260010",
+    "raw_data": {
+      "name": "朱子明",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 3.31,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 3379,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 34,
+        "sleep_quality_score": 7
+      }
+    }
+  },
+  {
+    "student_id": "20260011",
+    "raw_data": {
+      "name": "吴勇",
+      "major": "计算机科学与技术",
+      "academic_data": {
+        "gpa": 2.41,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 1481,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 70,
+        "sleep_quality_score": 6
+      }
+    }
+  },
+  {
+    "student_id": "20260012",
+    "raw_data": {
+      "name": "何宇杰",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 3.49,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2345,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 36,
+        "sleep_quality_score": 7
+      }
+    }
+  },
+  {
+    "student_id": "20260013",
+    "raw_data": {
+      "name": "赵博鹏",
+      "major": "数据科学",
+      "academic_data": {
+        "gpa": 3.01,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 3379,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 24,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260014",
+    "raw_data": {
+      "name": "何秀林",
+      "major": "人工智能",
+      "academic_data": {
+        "gpa": 3.49,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2653,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 19,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260015",
+    "raw_data": {
+      "name": "王德杰",
+      "major": "计算机科学与技术",
+      "academic_data": {
+        "gpa": 2.46,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 1895,
+        "has_heavy_debt": true
+      },
+      "psychological_data": {
+        "stress_index": 63,
+        "sleep_quality_score": 6
+      }
+    }
+  },
+  {
+    "student_id": "20260016",
+    "raw_data": {
+      "name": "杨玉静",
+      "major": "化学",
+      "academic_data": {
+        "gpa": 3.28,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2751,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 35,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260017",
+    "raw_data": {
+      "name": "郭宇飞",
+      "major": "人工智能",
+      "academic_data": {
+        "gpa": 2.35,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 1356,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 68,
+        "sleep_quality_score": 5
+      }
+    }
+  },
+  {
+    "student_id": "20260018",
+    "raw_data": {
+      "name": "陈博超",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 3.83,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 3749,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 38,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260019",
+    "raw_data": {
+      "name": "何泽红",
+      "major": "统计学",
+      "academic_data": {
+        "gpa": 3.14,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4969,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 12,
+        "sleep_quality_score": 7
+      }
+    }
+  },
+  {
+    "student_id": "20260020",
+    "raw_data": {
+      "name": "王德豪",
+      "major": "统计学",
+      "academic_data": {
+        "gpa": 3.87,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4199,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 33,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260021",
+    "raw_data": {
+      "name": "孙文萱",
+      "major": "数据科学",
+      "academic_data": {
+        "gpa": 4.28,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 3794,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 32,
+        "sleep_quality_score": 8
+      }
+    }
+  },
+  {
+    "student_id": "20260022",
+    "raw_data": {
+      "name": "马静",
+      "major": "化学",
+      "academic_data": {
+        "gpa": 3.46,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 3753,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 10,
+        "sleep_quality_score": 10
+      }
+    }
+  },
+  {
+    "student_id": "20260023",
+    "raw_data": {
+      "name": "杨浩霞",
+      "major": "数据科学",
+      "academic_data": {
+        "gpa": 1.04,
+        "failed_courses": 6
+      },
+      "financial_data": {
+        "monthly_living_expenses": 1050,
+        "has_heavy_debt": true
+      },
+      "psychological_data": {
+        "stress_index": 83,
+        "sleep_quality_score": 3
+      }
+    }
+  },
+  {
+    "student_id": "20260024",
+    "raw_data": {
+      "name": "马建豪",
+      "major": "计算机科学与技术",
+      "academic_data": {
+        "gpa": 2.88,
+        "failed_courses": 2
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2388,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 70,
+        "sleep_quality_score": 7
+      }
+    }
+  },
+  {
+    "student_id": "20260025",
+    "raw_data": {
+      "name": "王博豪",
+      "major": "人工智能",
+      "academic_data": {
+        "gpa": 3.56,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2951,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 29,
+        "sleep_quality_score": 7
+      }
+    }
+  },
+  {
+    "student_id": "20260026",
+    "raw_data": {
+      "name": "张德华",
+      "major": "人工智能",
+      "academic_data": {
+        "gpa": 3.98,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4114,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 25,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260027",
+    "raw_data": {
+      "name": "罗秋超",
+      "major": "化学",
+      "academic_data": {
+        "gpa": 4.03,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4118,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 36,
+        "sleep_quality_score": 10
+      }
+    }
+  },
+  {
+    "student_id": "20260028",
+    "raw_data": {
+      "name": "马晨娜",
+      "major": "计算机科学与技术",
+      "academic_data": {
+        "gpa": 2.03,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2045,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 47,
+        "sleep_quality_score": 7
+      }
+    }
+  },
+  {
+    "student_id": "20260029",
+    "raw_data": {
+      "name": "王宇豪",
+      "major": "数据科学",
+      "academic_data": {
+        "gpa": 3.81,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2400,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 37,
+        "sleep_quality_score": 7
+      }
+    }
+  },
+  {
+    "student_id": "20260030",
+    "raw_data": {
+      "name": "张明红",
+      "major": "统计学",
+      "academic_data": {
+        "gpa": 2.58,
+        "failed_courses": 1
+      },
+      "financial_data": {
+        "monthly_living_expenses": 1324,
+        "has_heavy_debt": true
+      },
+      "psychological_data": {
+        "stress_index": 58,
+        "sleep_quality_score": 6
+      }
+    }
+  },
+  {
+    "student_id": "20260031",
+    "raw_data": {
+      "name": "罗文华",
+      "major": "化学",
+      "academic_data": {
+        "gpa": 1.39,
+        "failed_courses": 5
+      },
+      "financial_data": {
+        "monthly_living_expenses": 891,
+        "has_heavy_debt": true
+      },
+      "psychological_data": {
+        "stress_index": 92,
+        "sleep_quality_score": 3
+      }
+    }
+  },
+  {
+    "student_id": "20260032",
+    "raw_data": {
+      "name": "刘晨娜",
+      "major": "统计学",
+      "academic_data": {
+        "gpa": 3.6,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2803,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 34,
+        "sleep_quality_score": 8
+      }
+    }
+  },
+  {
+    "student_id": "20260033",
+    "raw_data": {
+      "name": "胡平",
+      "major": "计算机科学与技术",
+      "academic_data": {
+        "gpa": 2.83,
+        "failed_courses": 1
+      },
+      "financial_data": {
+        "monthly_living_expenses": 1639,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 49,
+        "sleep_quality_score": 5
+      }
+    }
+  },
+  {
+    "student_id": "20260034",
+    "raw_data": {
+      "name": "林浩林",
+      "major": "计算机科学与技术",
+      "academic_data": {
+        "gpa": 2.04,
+        "failed_courses": 1
+      },
+      "financial_data": {
+        "monthly_living_expenses": 1534,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 46,
+        "sleep_quality_score": 6
+      }
+    }
+  },
+  {
+    "student_id": "20260035",
+    "raw_data": {
+      "name": "黄梦飞",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 3.57,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 3224,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 35,
+        "sleep_quality_score": 8
+      }
+    }
+  },
+  {
+    "student_id": "20260036",
+    "raw_data": {
+      "name": "徐德磊",
+      "major": "数据科学",
+      "academic_data": {
+        "gpa": 3.61,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 3748,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 14,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260037",
+    "raw_data": {
+      "name": "刘嘉娜",
+      "major": "数据科学",
+      "academic_data": {
+        "gpa": 3.41,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 3743,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 14,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260038",
+    "raw_data": {
+      "name": "杨欣宇",
+      "major": "化学",
+      "academic_data": {
+        "gpa": 4.07,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4878,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 21,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260039",
+    "raw_data": {
+      "name": "罗思芳",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 2.42,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 1468,
+        "has_heavy_debt": true
+      },
+      "psychological_data": {
+        "stress_index": 46,
+        "sleep_quality_score": 7
+      }
+    }
+  },
+  {
+    "student_id": "20260040",
+    "raw_data": {
+      "name": "高嘉鹏",
+      "major": "化学",
+      "academic_data": {
+        "gpa": 1.38,
+        "failed_courses": 3
+      },
+      "financial_data": {
+        "monthly_living_expenses": 628,
+        "has_heavy_debt": true
+      },
+      "psychological_data": {
+        "stress_index": 86,
+        "sleep_quality_score": 3
+      }
+    }
+  },
+  {
+    "student_id": "20260041",
+    "raw_data": {
+      "name": "罗明敏",
+      "major": "人工智能",
+      "academic_data": {
+        "gpa": 4.01,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 2637,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 31,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260042",
+    "raw_data": {
+      "name": "马文豪",
+      "major": "数据科学",
+      "academic_data": {
+        "gpa": 2.07,
+        "failed_courses": 1
+      },
+      "financial_data": {
+        "monthly_living_expenses": 1727,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 60,
+        "sleep_quality_score": 6
+      }
+    }
+  },
+  {
+    "student_id": "20260043",
+    "raw_data": {
+      "name": "胡玉琪",
+      "major": "计算机科学与技术",
+      "academic_data": {
+        "gpa": 4.08,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4111,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 16,
+        "sleep_quality_score": 10
+      }
+    }
+  },
+  {
+    "student_id": "20260044",
+    "raw_data": {
+      "name": "刘林",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 3.42,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4608,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 31,
+        "sleep_quality_score": 8
+      }
+    }
+  },
+  {
+    "student_id": "20260045",
+    "raw_data": {
+      "name": "孙芳",
+      "major": "数据科学",
+      "academic_data": {
+        "gpa": 3.87,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4175,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 38,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260046",
+    "raw_data": {
+      "name": "郭云红",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 3.48,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4449,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 19,
+        "sleep_quality_score": 9
+      }
+    }
+  },
+  {
+    "student_id": "20260047",
+    "raw_data": {
+      "name": "何云磊",
+      "major": "化学",
+      "academic_data": {
+        "gpa": 3.68,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4179,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 32,
+        "sleep_quality_score": 10
+      }
+    }
+  },
+  {
+    "student_id": "20260048",
+    "raw_data": {
+      "name": "吴泽艳",
+      "major": "物理学",
+      "academic_data": {
+        "gpa": 1.46,
+        "failed_courses": 5
+      },
+      "financial_data": {
+        "monthly_living_expenses": 851,
+        "has_heavy_debt": true
+      },
+      "psychological_data": {
+        "stress_index": 76,
+        "sleep_quality_score": 3
+      }
+    }
+  },
+  {
+    "student_id": "20260049",
+    "raw_data": {
+      "name": "赵浩磊",
+      "major": "人工智能",
+      "academic_data": {
+        "gpa": 3.22,
+        "failed_courses": 0
+      },
+      "financial_data": {
+        "monthly_living_expenses": 4265,
+        "has_heavy_debt": false
+      },
+      "psychological_data": {
+        "stress_index": 22,
+        "sleep_quality_score": 8
+      }
+    }
+  }
+]
